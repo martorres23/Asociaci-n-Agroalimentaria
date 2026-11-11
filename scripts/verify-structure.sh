@@ -17,4 +17,14 @@ need assets/logo_horizontal_transparente.png
 need assets/logo_asociacion_agroalimentaria_transparente.png
 need assets/hero.jpg
 need assets/section-field.jpg
+
+for id in inicio quienes-somos compromiso que-hacemos capacidades por-que contacto; do
+  if ! grep -q "id=\"$id\"" "$ROOT/index.html"; then
+    echo "MISSING ID: $id"
+    missing=1
+  else
+    echo "OK ID: $id"
+  fi
+done
+
 exit "$missing"
