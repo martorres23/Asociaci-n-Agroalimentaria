@@ -25,7 +25,7 @@ El script comprueba que existan los archivos principales, los assets y los IDs d
 1. Crea un formulario en [Formspree](https://formspree.io) que envíe a `asociacionagroalimentaria79@gmail.com`.
 2. Sustituye la URL de acción en `index.html`:
 
-   `https://formspree.io/f/PLACEHOLDER` ? `https://formspree.io/f/<tu-form-id>`
+   `https://formspree.io/f/PLACEHOLDER` â†’ `https://formspree.io/f/<tu-form-id>`
 
 3. Prueba el envío desde la sección **Contacto** (éxito y mensajes de estado).
 
