@@ -8,16 +8,17 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Asociación Agroalimentaria de Colombia">
   <meta property="og:description" content="Impulsando el desarrollo agropecuario y agroalimentario de Colombia.">
-  <meta property="og:image" content="assets/hero.jpg">
+  <meta property="og:image" content="assets/hero-cover.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <a class="site-header__brand" href="#inicio" aria-label="Ir al inicio">
-      <img src="assets/logo_horizontal_transparente.png" alt="Asociación Agroalimentaria de Colombia">
+      <img class="site-header__mark" src="assets/logo_asociacion_agroalimentaria_transparente.png" alt="">
+      <span class="site-header__name">Agroalimentaria</span>
     </a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -26,129 +27,242 @@
 
     <nav id="site-nav" aria-label="Navegación principal">
       <ul>
+        <li><a href="#inicio">Inicio</a></li>
         <li><a href="#quienes-somos">Quiénes somos</a></li>
         <li><a href="#que-hacemos">Qué hacemos</a></li>
         <li><a href="#capacidades">Capacidades</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
-      <a class="btn btn--secondary" href="#contacto">Contactar</a>
+      <a class="btn btn--nav" href="#contacto">Contactar</a>
     </nav>
   </header>
 
   <main>
     <section id="inicio" class="hero">
+      <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
-        <img class="hero__mark" src="assets/logo_asociacion_agroalimentaria_transparente.png" alt="">
-        <h1>Asociación Agroalimentaria de Colombia</h1>
+        <p class="hero__eyebrow">Campo colombiano</p>
+        <h1>
+          <span class="hero__brand-top">Asociación</span>
+          <span class="hero__brand-main">Agroalimentaria</span>
+          <span class="hero__brand-bottom">de Colombia</span>
+        </h1>
         <p class="hero__slogan">Impulsando el desarrollo agropecuario y agroalimentario de Colombia.</p>
-        <p class="hero__nit">NIT 902120877</p>
         <div class="hero__actions">
-          <a class="btn btn--primary js-cta-tipo" data-tipo="Afiliado" href="#contacto">Únete</a>
-          <a class="btn btn--secondary js-cta-tipo" data-tipo="Aliado" href="#contacto">Sé aliado</a>
+          <a class="btn btn--primary js-cta-tipo" data-tipo="Afiliado" href="#contacto">Únete <span aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost js-cta-tipo" data-tipo="Aliado" href="#contacto">Sé aliado</a>
         </div>
       </div>
     </section>
 
-    <section id="quienes-somos" class="reveal">
-      <div class="section-heading">
-        <p class="section-heading__eyebrow">Nuestra asociación</p>
-        <h2>Quiénes somos</h2>
+    <div class="hero-ticker" aria-hidden="true">
+      <div class="hero-ticker__track">
+        <span>Producción agropecuaria</span>
+        <span>Transformación</span>
+        <span>Comercialización</span>
+        <span>Asistencia técnica</span>
+        <span>Gestión de proyectos</span>
+        <span>Alianzas estratégicas</span>
+        <span>Producción agropecuaria</span>
+        <span>Transformación</span>
+        <span>Comercialización</span>
+        <span>Asistencia técnica</span>
+        <span>Gestión de proyectos</span>
+        <span>Alianzas estratégicas</span>
       </div>
-      <div class="section-content">
-        <p>Somos una organización que integra productores, organizaciones e instituciones para impulsar el desarrollo agropecuario y agroalimentario de Colombia.</p>
-        <p>Nuestro objeto social promueve la producción, transformación y comercialización de productos del campo, el fortalecimiento de la economía campesina y la gestión de iniciativas que mejoren la calidad de vida de nuestros asociados y sus comunidades.</p>
+    </div>
+
+    <section id="quienes-somos" class="about reveal">
+      <div class="about__grid">
+        <div class="about__copy">
+          <p class="section-heading__eyebrow">Nuestra asociación</p>
+          <h2>Quiénes somos</h2>
+          <p>Somos una organización que integra productores, organizaciones e instituciones para impulsar el desarrollo agropecuario y agroalimentario de Colombia.</p>
+          <p>Nuestro objeto social promueve la producción, transformación y comercialización de productos del campo, el fortalecimiento de la economía campesina y la gestión de iniciativas que mejoren la calidad de vida de nuestros asociados y sus comunidades.</p>
+          <a class="btn btn--solid" href="#contacto">Conócenos más</a>
+        </div>
+        <div class="about__media" aria-hidden="true">
+          <figure class="about__feature">
+            <img src="assets/about-workers.jpg" alt="" loading="lazy" width="626" height="417">
+          </figure>
+          <div class="about__pair">
+            <img src="assets/about-crops.jpg" alt="" loading="lazy" width="574" height="1024">
+            <img src="assets/about-eggs.jpg" alt="" loading="lazy" width="1024" height="1024">
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="compromiso" class="reveal">
-      <div class="section-heading">
+      <div class="section-heading section-heading--stack">
         <p class="section-heading__eyebrow">Lo que nos mueve</p>
         <h2>Nuestro compromiso</h2>
+        <p class="section-lead">Trabajamos por un campo con más oportunidades, donde la asociatividad y el desarrollo productivo impulsen transformación social y económica.</p>
       </div>
-      <ol class="commitment-list">
-        <li><span aria-hidden="true">01</span><strong>Economía campesina</strong><p>Promovemos oportunidades que reconocen y fortalecen el trabajo de las familias rurales.</p></li>
-        <li><span aria-hidden="true">02</span><strong>Desarrollo rural</strong><p>Contribuimos al progreso integral y sostenible de los territorios.</p></li>
-        <li><span aria-hidden="true">03</span><strong>Bienestar asociativo</strong><p>Trabajamos por mejores condiciones de vida para nuestros asociados y sus comunidades.</p></li>
-        <li><span aria-hidden="true">04</span><strong>Sostenibilidad</strong><p>Impulsamos prácticas responsables con los recursos naturales y el entorno.</p></li>
-        <li><span aria-hidden="true">05</span><strong>Participación</strong><p>Fomentamos la colaboración, la inclusión y la construcción colectiva.</p></li>
-        <li><span aria-hidden="true">06</span><strong>Fortalecimiento productivo</strong><p>Desarrollamos capacidades para una producción competitiva y con valor agregado.</p></li>
-      </ol>
+      <div class="commitment-bento">
+        <article class="commitment-card commitment-card--wide" style="--card-image: url('assets/about-farm.jpg')">
+          <div class="commitment-card__body">
+            <h3>Economía campesina</h3>
+            <p>Fortalecemos capacidades y oportunidades de pequeños y medianos productores.</p>
+          </div>
+        </article>
+        <article class="commitment-card commitment-card--tall" style="--card-image: url('assets/about-cattle.jpg')">
+          <div class="commitment-card__body">
+            <h3>Desarrollo rural</h3>
+            <p>Impulsamos iniciativas que contribuyen al progreso de las comunidades.</p>
+          </div>
+        </article>
+        <article class="commitment-card" style="--card-image: url('assets/about-crops.jpg')">
+          <div class="commitment-card__body">
+            <h3>Sostenibilidad</h3>
+            <p>Fomentamos prácticas responsables en las actividades agropecuarias.</p>
+          </div>
+        </article>
+        <article class="commitment-card" style="--card-image: url('assets/about-pigs.jpg')">
+          <div class="commitment-card__body">
+            <h3>Fortalecimiento productivo</h3>
+            <p>Apoyamos formación, innovación y valor agregado en el sector.</p>
+          </div>
+        </article>
+        <article class="commitment-card" style="--card-image: url('assets/commitment-bienestar.jpg')">
+          <div class="commitment-card__body">
+            <h3>Bienestar asociativo</h3>
+            <p>Promovemos el desarrollo integral y la defensa de los intereses de nuestros asociados.</p>
+          </div>
+        </article>
+        <article class="commitment-card" style="--card-image: url('assets/commitment-participacion.jpg')">
+          <div class="commitment-card__body">
+            <h3>Participación e inclusión</h3>
+            <p>Fomentamos liderazgo democrático, convivencia y participación comunitaria.</p>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section id="que-hacemos" class="reveal">
-      <div class="section-heading">
+    <section id="que-hacemos" class="services reveal">
+      <div class="section-heading section-heading--center">
         <p class="section-heading__eyebrow">Acción en el territorio</p>
         <h2>Qué hacemos</h2>
+        <p class="section-lead">Acompañamos toda la cadena agroalimentaria, desde la producción hasta las alianzas que abren mercado.</p>
       </div>
-      <div class="activity-grid">
-        <article>
-          <h3>Producción agropecuaria</h3>
-          <p>Promovemos procesos productivos que responden a las necesidades y oportunidades del campo colombiano.</p>
+      <div class="service-cards">
+        <article class="service-card">
+          <div class="service-card__media">
+            <img src="assets/service-crops.jpg" alt="" loading="lazy">
+          </div>
+          <div class="service-card__body">
+            <h3>Producción agropecuaria</h3>
+            <p>Promovemos procesos productivos que responden a las necesidades y oportunidades del campo colombiano.</p>
+            <a href="#contacto" class="service-card__link">Saber más</a>
+          </div>
         </article>
-        <article>
-          <h3>Transformación agroindustrial</h3>
-          <p>Impulsamos la transformación de productos para generar valor agregado y ampliar sus oportunidades.</p>
+        <article class="service-card">
+          <div class="service-card__media">
+            <img src="assets/service-harvest.jpg" alt="" loading="lazy">
+          </div>
+          <div class="service-card__body">
+            <h3>Transformación agroindustrial</h3>
+            <p>Impulsamos la transformación de productos para generar valor agregado y ampliar sus oportunidades.</p>
+            <a href="#contacto" class="service-card__link">Saber más</a>
+          </div>
         </article>
-        <article>
-          <h3>Comercialización</h3>
-          <p>Conectamos la oferta de nuestros productores con mercados y canales de comercialización.</p>
+        <article class="service-card">
+          <div class="service-card__media">
+            <img src="assets/commitment-participacion.jpg" alt="" loading="lazy">
+          </div>
+          <div class="service-card__body">
+            <h3>Comercialización</h3>
+            <p>Conectamos la oferta de nuestros productores con mercados y canales de comercialización.</p>
+            <a href="#contacto" class="service-card__link">Saber más</a>
+          </div>
         </article>
-        <article>
-          <h3>Asistencia técnica y capacitación</h3>
-          <p>Fortalecemos conocimientos y capacidades técnicas, organizativas y empresariales.</p>
+        <article class="service-card">
+          <div class="service-card__media">
+            <img src="assets/service-care.jpg" alt="" loading="lazy">
+          </div>
+          <div class="service-card__body">
+            <h3>Asistencia técnica</h3>
+            <p>Fortalecemos conocimientos y capacidades técnicas, organizativas y empresariales.</p>
+            <a href="#contacto" class="service-card__link">Saber más</a>
+          </div>
         </article>
-        <article>
-          <h3>Gestión de proyectos</h3>
-          <p>Formulamos, ejecutamos y acompañamos proyectos de desarrollo agropecuario y agroalimentario.</p>
+        <article class="service-card">
+          <div class="service-card__media">
+            <img src="assets/service-poultry.jpg" alt="" loading="lazy">
+          </div>
+          <div class="service-card__body">
+            <h3>Gestión de proyectos</h3>
+            <p>Formulamos, ejecutamos y acompañamos proyectos de desarrollo agropecuario y agroalimentario.</p>
+            <a href="#contacto" class="service-card__link">Saber más</a>
+          </div>
         </article>
-        <article>
-          <h3>Alianzas y cooperación</h3>
-          <p>Articulamos esfuerzos con entidades públicas, privadas y organizaciones de cooperación.</p>
+        <article class="service-card">
+          <div class="service-card__media">
+            <img src="assets/commitment-bienestar.jpg" alt="" loading="lazy">
+          </div>
+          <div class="service-card__body">
+            <h3>Alianzas y cooperación</h3>
+            <p>Articulamos esfuerzos con entidades públicas, privadas y organizaciones de cooperación.</p>
+            <a href="#contacto" class="service-card__link">Saber más</a>
+          </div>
         </article>
       </div>
     </section>
 
-    <section id="capacidades" class="reveal">
-      <div class="section-heading">
+    <section id="capacidades" class="capabilities reveal">
+      <div class="section-heading section-heading--center">
         <p class="section-heading__eyebrow">Experiencia que articula</p>
         <h2>Nuestras capacidades</h2>
+        <p class="section-lead">Herramientas concretas para impulsar proyectos, mercados y cooperación institucional.</p>
       </div>
-      <div class="capacity-grid">
-        <article>
+      <div class="capability-cards">
+        <article class="capability-card">
+          <span class="capability-card__num" aria-hidden="true">01</span>
           <h3>Contratación pública y privada</h3>
           <p>Participamos en procesos contractuales orientados al desarrollo del sector.</p>
         </article>
-        <article>
+        <article class="capability-card">
+          <span class="capability-card__num" aria-hidden="true">02</span>
           <h3>Comercialización integral</h3>
           <p>Acompañamos la cadena comercial desde el productor hasta el mercado.</p>
         </article>
-        <article>
+        <article class="capability-card">
+          <span class="capability-card__num" aria-hidden="true">03</span>
           <h3>Gestión de proyectos</h3>
           <p>Convertimos necesidades y oportunidades en iniciativas viables y medibles.</p>
         </article>
-        <article>
+        <article class="capability-card">
+          <span class="capability-card__num" aria-hidden="true">04</span>
           <h3>Cooperación institucional</h3>
           <p>Creamos vínculos estratégicos para ampliar el alcance de cada iniciativa.</p>
         </article>
-        <article>
+        <article class="capability-card">
+          <span class="capability-card__num" aria-hidden="true">05</span>
           <h3>Gestión de recursos</h3>
           <p>Movilizamos recursos y capacidades para respaldar el desarrollo productivo.</p>
         </article>
-        <article>
+        <article class="capability-card">
+          <span class="capability-card__num" aria-hidden="true">06</span>
           <h3>Articulación asociativa</h3>
           <p>Integramos actores y organizaciones alrededor de objetivos compartidos.</p>
         </article>
       </div>
     </section>
 
-    <section id="por-que" class="reveal">
-      <div class="section-heading">
-        <p class="section-heading__eyebrow">Construimos juntos</p>
-        <h2>Por qué trabajar con nosotros</h2>
-      </div>
-      <div class="section-content">
-        <p>Articulamos productores, comunidades, empresas e instituciones para transformar oportunidades en resultados. Sumamos conocimiento del territorio, capacidad de gestión y vocación de servicio para construir alianzas que fortalezcan el campo colombiano.</p>
-        <a class="btn btn--primary" href="#contacto">Hablemos</a>
+    <section id="por-que" class="why reveal">
+      <div class="why__panel" style="--why-image: url('assets/service-fields.jpg')">
+        <div class="why__content">
+          <p class="section-heading__eyebrow">Construimos juntos</p>
+          <h2>Por qué trabajar con nosotros</h2>
+          <p>Articulamos productores, comunidades, empresas e instituciones para transformar oportunidades en resultados. Sumamos conocimiento del territorio, capacidad de gestión y vocación de servicio para construir alianzas que fortalezcan el campo colombiano.</p>
+          <ul class="why__points">
+            <li>Trabajo asociativo con resultados</li>
+            <li>Presencia en el territorio</li>
+            <li>Gestión confiable de proyectos</li>
+            <li>Vocación de servicio</li>
+          </ul>
+          <a class="btn btn--primary" href="#contacto">Hablemos</a>
+        </div>
       </div>
     </section>
 
