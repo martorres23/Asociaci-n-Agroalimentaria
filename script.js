@@ -51,11 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("#contact-form");
   const status = document.querySelector("#form-status");
 
+  const clearFormStatusState = () => {
+    status?.classList.remove("is-error");
+    status?.removeAttribute("data-state");
+  };
+
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
 
     const endpoint = form.getAttribute("action");
+    clearFormStatusState();
     status.textContent = "Enviando…";
     const submitBtn = form.querySelector('[type="submit"]');
     submitBtn.disabled = true;
@@ -67,9 +73,12 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: { Accept: "application/json" },
       });
       if (!res.ok) throw new Error("send failed");
+      clearFormStatusState();
       status.textContent = "Mensaje enviado. Gracias por contactarnos.";
       form.reset();
     } catch (err) {
+      status.classList.add("is-error");
+      status.setAttribute("data-state", "error");
       status.textContent =
         "No se pudo enviar. Escríbenos a asociacionagroalimentaria79@gmail.com o WhatsApp +57 320-420-0954.";
     } finally {
