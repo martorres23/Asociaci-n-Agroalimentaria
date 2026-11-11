@@ -1,0 +1,4 @@
+*.pdf
+_preview-*.png
+.superpowers/
+.DS_Store
