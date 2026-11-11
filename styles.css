@@ -106,18 +106,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   justify-content: space-between;
   gap: 1.5rem;
   height: var(--header-h);
-  /* zero net flow height: hero sits flush under the bar, so compacting never shifts layout */
+  /* zero net flow height: hero sits flush under the bar; scroll only tweaks shadow/logo */
   margin-bottom: calc(-1 * var(--header-h));
   padding: 0 var(--gutter);
   background: rgba(243, 247, 241, 0.88);
   -webkit-backdrop-filter: blur(12px) saturate(1.2);
   backdrop-filter: blur(12px) saturate(1.2);
   border-bottom: 1px solid transparent;
-  transition: height 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .site-header.is-scrolled {
-  height: 3.5rem;
   border-bottom-color: var(--line);
   box-shadow: 0 6px 24px rgba(0, 40, 20, 0.08);
 }
@@ -272,22 +271,23 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: 50%;
 }
 
-.hero__eyebrow {
-  margin-bottom: 1rem;
-  font-size: clamp(0.8rem, 1.6vw, 0.95rem);
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--lime);
-}
-
 .hero h1 {
-  max-width: 17ch;
+  max-width: 22ch;
   font-size: clamp(2.5rem, 7.2vw, 5.75rem);
   font-weight: 700;
   line-height: 1.04;
   letter-spacing: -0.015em;
   color: var(--white);
+  text-wrap: balance;
+}
+
+.hero__slogan {
+  margin-top: 1.15rem;
+  max-width: 42ch;
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
   text-wrap: balance;
 }
 
