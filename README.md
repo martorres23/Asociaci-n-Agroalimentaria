@@ -39,7 +39,3 @@ Sube estos archivos y carpetas a tu hosting estático (Netlify Drop, GitHub Pages
 - `assets/` (completa)
 
 No hace falta proceso de build.
-
-## Especificación de diseño
-
-Requisitos y decisiones de producto: [docs/superpowers/specs/2026-11-10-asociacion-agroalimentaria-landing-design.md](docs/superpowers/specs/2026-11-10-asociacion-agroalimentaria-landing-design.md)
