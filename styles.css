@@ -1,0 +1,658 @@
+/* ==========================================================================
+   Asociación Agroalimentaria de Colombia — visual system
+   ========================================================================== */
+
+:root {
+  --green: #006837;
+  --lime: #8CC63F;
+  --ink: #14201a;
+  --paper: #f3f7f1;
+  --paper-2: #e7f0e4;
+  --white: #ffffff;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Source Sans 3", "Source Sans Pro", sans-serif;
+  --header-h: 4.5rem;
+  --radius: 0;
+  --shadow-soft: 0 12px 40px rgba(0, 40, 20, 0.12);
+
+  --line: rgba(0, 104, 55, 0.22);
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --container: 72rem;
+  --section-y: clamp(3rem, 8vw, 6rem);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 0.5rem);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(140, 198, 63, 0.18), transparent 60%),
+    linear-gradient(180deg, var(--paper), var(--paper-2));
+  background-attachment: fixed;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--green);
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a { color: var(--green); }
+
+:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 3px;
+}
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary { background: var(--lime); color: var(--ink); }
+.btn--primary:hover { background: #a0d553; }
+.btn--secondary { background: transparent; color: var(--white); border-color: var(--white); }
+.btn--secondary:hover { background: var(--white); color: var(--green); }
+
+/* ==========================================================================
+   Header (sticky, translucent, compact on scroll)
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: var(--header-h);
+  /* zero net flow height: hero sits flush under the bar, so compacting never shifts layout */
+  margin-bottom: calc(-1 * var(--header-h));
+  padding: 0 var(--gutter);
+  background: rgba(243, 247, 241, 0.88);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  backdrop-filter: blur(12px) saturate(1.2);
+  border-bottom: 1px solid transparent;
+  transition: height 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.site-header.is-scrolled {
+  height: 3.5rem;
+  border-bottom-color: var(--line);
+  box-shadow: 0 6px 24px rgba(0, 40, 20, 0.08);
+}
+
+.site-header__brand {
+  display: block;
+  flex: none;
+}
+.site-header__brand img {
+  height: clamp(2.4rem, 4.5vw, 3.1rem);
+  width: auto;
+  transition: height 0.25s ease;
+}
+.site-header.is-scrolled .site-header__brand img { height: 2.2rem; }
+
+#site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+#site-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+#site-nav ul a {
+  position: relative;
+  display: inline-block;
+  padding: 0.35rem 0;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+#site-nav ul a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--lime);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+#site-nav ul a:hover::after,
+#site-nav ul a:focus-visible::after { transform: scaleX(1); }
+
+/* Header CTA sits on a light bar, so invert the secondary button there */
+#site-nav .btn--secondary {
+  padding: 0.6rem 1.1rem;
+  color: var(--green);
+  border-color: var(--green);
+}
+#site-nav .btn--secondary:hover {
+  background: var(--green);
+  color: var(--white);
+}
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--green);
+  background: transparent;
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  cursor: pointer;
+  position: relative;
+}
+/* Hamburger glyph drawn in CSS; becomes an X when open */
+.nav-toggle::before {
+  content: "";
+  width: 1.15rem;
+  height: 2px;
+  background: currentColor;
+  box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.site-header.nav-open .nav-toggle::before {
+  box-shadow: none;
+  transform: rotate(45deg);
+}
+.nav-toggle::after {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  width: 1.15rem;
+  height: 2px;
+  background: currentColor;
+  opacity: 0;
+  transform: translateY(-50%) rotate(-45deg);
+}
+.site-header.nav-open .nav-toggle::after { opacity: 1; }
+
+/* ==========================================================================
+   Hero — full-bleed photo, dark green overlay, brand-first composition
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: calc(var(--header-h) + 2rem) var(--gutter) 3rem;
+  color: var(--white);
+  background-color: #0b3320;
+  /* hero.jpg has its own lockup + slogan bar baked into the lower ~45%; the
+     vertical layer fades that region to solid green so it never ghosts behind
+     the live headline, while the clean landscape stays visible up top. */
+  background-image:
+    linear-gradient(180deg, rgba(0, 48, 26, 0.35) 0%, rgba(0, 48, 26, 0.6) 34%, rgba(0, 44, 24, 0.98) 50%, rgb(0, 44, 24) 100%),
+    linear-gradient(105deg, rgba(0, 38, 20, 0.8) 0%, rgba(0, 62, 33, 0.45) 60%, rgba(0, 62, 33, 0.3) 100%),
+    url("assets/hero.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  isolation: isolate;
+}
+
+/* subtle lime glow + bottom fade into page tone */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(900px 500px at 85% 110%, rgba(140, 198, 63, 0.22), transparent 65%),
+    linear-gradient(180deg, transparent 70%, rgba(0, 38, 20, 0.5) 100%);
+  pointer-events: none;
+}
+
+.hero__content {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+.hero__mark {
+  width: clamp(5rem, 11vw, 7.5rem);
+  aspect-ratio: 1;
+  object-fit: contain;
+  margin-bottom: 1.75rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 50%;
+}
+
+.hero__eyebrow {
+  margin-bottom: 1rem;
+  font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+.hero h1 {
+  max-width: 17ch;
+  font-size: clamp(2.5rem, 7.2vw, 5.75rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  color: var(--white);
+  text-wrap: balance;
+}
+
+.hero__nit {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2.25rem;
+}
+.hero__actions .btn { padding: 1rem 1.9rem; font-size: 1.05rem; }
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+main > section:not(.hero) {
+  padding: var(--section-y) max(var(--gutter), calc((100% - var(--container)) / 2));
+}
+
+/* alternate band to give rhythm without cards */
+#que-hacemos { background: rgba(0, 104, 55, 0.06); }
+
+.section-heading { margin-bottom: clamp(1.75rem, 4vw, 3rem); }
+
+.section-heading__eyebrow {
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.section-heading__eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 3px;
+  margin-right: 0.75rem;
+  vertical-align: middle;
+  background: var(--lime);
+}
+
+.section-heading h2 {
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
+  letter-spacing: -0.01em;
+}
+
+/* Heading + prose sections: two columns on desktop */
+.section-content {
+  max-width: 44rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+}
+.section-content p + p { margin-top: 1.1rem; }
+.section-content .btn { margin-top: 1.75rem; }
+
+@media (min-width: 801px) {
+  main > section:has(> .section-content) {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  main > section:has(> .section-content) .section-heading { margin-bottom: 0; }
+  main > section:has(> .section-content) .section-content { max-width: none; }
+}
+
+/* "Por qué": solid green band (section-field.jpg is a baked-in slide graphic,
+   so it is intentionally not used as a background) */
+#por-que {
+  color: var(--white);
+  background-color: var(--green);
+  background-image:
+    radial-gradient(700px 360px at 100% 0%, rgba(140, 198, 63, 0.28), transparent 70%),
+    linear-gradient(135deg, #004d29 0%, var(--green) 100%);
+}
+#por-que h2,
+#por-que .section-heading__eyebrow { color: var(--white); }
+#por-que .section-heading__eyebrow::before { background: var(--lime); }
+
+/* ---------- Commitment list: numbered, hairline dividers ---------- */
+
+.commitment-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 4vw, 3rem);
+}
+.commitment-list li {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  column-gap: 1rem;
+  align-content: start;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line);
+}
+.commitment-list li > span {
+  grid-row: 1 / span 2;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--green);
+  opacity: 0.55;
+}
+.commitment-list strong {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--green);
+}
+.commitment-list p {
+  grid-column: 2;
+  margin-top: 0.4rem;
+  color: rgba(20, 32, 26, 0.82);
+}
+
+/* ---------- Activity grid: light top rule ---------- */
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+}
+.activity-grid article {
+  padding-top: 1.1rem;
+  border-top: 3px solid var(--lime);
+}
+.activity-grid h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+.activity-grid p { color: rgba(20, 32, 26, 0.82); }
+
+/* ---------- Capacity grid: left rule ---------- */
+
+.capacity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 4vw, 2.75rem) clamp(1.5rem, 4vw, 3rem);
+}
+.capacity-grid article {
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--line);
+  position: relative;
+}
+.capacity-grid article::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 3px;
+  height: 2.2rem;
+  background: var(--lime);
+}
+.capacity-grid h3 {
+  margin-bottom: 0.45rem;
+  font-size: 1.2rem;
+}
+.capacity-grid p { color: rgba(20, 32, 26, 0.82); }
+
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.contact-details { font-size: 1.1rem; }
+.contact-details > p + address,
+.contact-details address + p { margin-top: 1.5rem; }
+.contact-details address {
+  display: grid;
+  gap: 0.6rem;
+  font-style: normal;
+  font-weight: 600;
+}
+.contact-details address a {
+  overflow-wrap: anywhere;
+  text-decoration-color: var(--lime);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.contact-details address a:hover { text-decoration-color: var(--green); }
+.contact-details > p:last-child {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(20, 32, 26, 0.7);
+}
+
+#contact-form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.form-field { display: grid; gap: 0.4rem; }
+.form-field label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--green);
+}
+.form-field label span {
+  font-weight: 400;
+  color: rgba(20, 32, 26, 0.65);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid var(--green);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.form-field textarea { resize: vertical; min-height: 8rem; }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  background: var(--white);
+  border-color: var(--green);
+  outline: 3px solid var(--lime);
+  outline-offset: 1px;
+}
+
+#contact-form .btn { justify-self: start; }
+#contact-form .btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
+
+#form-status {
+  min-height: 1.5em;
+  font-weight: 600;
+  color: var(--green);
+}
+#form-status:empty { min-height: 0; }
+#form-status.is-error,
+#form-status[data-state="error"] { color: #a1261b; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.5rem clamp(1.5rem, 4vw, 3rem);
+  padding: 2.5rem max(var(--gutter), calc((100% - var(--container)) / 2));
+  background: rgba(255, 255, 255, 0.55);
+  border-top: 4px solid var(--lime);
+  font-size: 0.95rem;
+}
+.site-footer > a:first-child img { width: 5.5rem; height: auto; }
+.site-footer div p + p { margin-top: 0.2rem; }
+.site-footer div p:first-child { font-weight: 700; letter-spacing: 0.1em; }
+.site-footer > p {
+  grid-column: 1 / -1;
+  padding-top: 1.25rem;
+  font-size: 0.85rem;
+  color: rgba(20, 32, 26, 0.7);
+  border-top: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   Reveal on scroll
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn, .btn:hover { transition: none; transform: none; }
+}
+/* no-JS safety net: never leave content hidden */
+@media (scripting: none) {
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ==========================================================================
+   Tablet
+   ========================================================================== */
+
+@media (max-width: 1000px) {
+  .commitment-list,
+  .activity-grid,
+  .capacity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ==========================================================================
+   Mobile (<= 800px): hamburger nav, stacked layouts
+   ========================================================================== */
+
+@media (max-width: 800px) {
+  :root { --header-h: 4rem; }
+
+  .site-header { flex-wrap: wrap; }
+  .nav-toggle { display: inline-flex; }
+
+  #site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem var(--gutter) 1.5rem;
+    background: rgba(243, 247, 241, 0.98);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 16px 32px rgba(0, 40, 20, 0.12);
+  }
+  .site-header.nav-open #site-nav { display: flex; }
+
+  #site-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  #site-nav ul li + li { border-top: 1px solid var(--line); }
+  #site-nav ul a {
+    display: block;
+    padding: 0.85rem 0;
+    font-size: 1.1rem;
+  }
+  #site-nav ul a::after { display: none; }
+  #site-nav .btn--secondary { padding: 0.85rem 1.1rem; }
+
+  .hero { align-items: flex-end; padding-bottom: 2.5rem; }
+  .hero h1 { max-width: none; }
+  .hero__actions .btn { flex: 1 1 100%; }
+
+  .contact-layout { grid-template-columns: 1fr; }
+
+  .commitment-list,
+  .activity-grid,
+  .capacity-grid { grid-template-columns: 1fr; }
+
+  .site-footer { grid-template-columns: 1fr; }
+  .site-footer > a:first-child img { width: 4.5rem; }
+}
+
+@media (min-width: 801px) {
+  /* never show a stale mobile-open state on desktop */
+  .site-header.nav-open #site-nav { display: flex; }
+}
